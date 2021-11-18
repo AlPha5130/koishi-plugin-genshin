@@ -10,6 +10,22 @@
 
 想看看自己是不是非酋？想要成为下一个天选之人？向 koishi bot 发送指令，进行模拟抽卡吧！
 
+**截图展示**
+
+<details>
+<summary>玩家资料卡 (genshin.profile)</summary>
+
+![genshin-profile.jpg](https://i.loli.net/2021/09/10/9Q1MzJfqmUhj46y.jpg)
+
+</details>
+
+<details>
+<summary>角色展示卡 (genshin.character)</summary>
+
+![genshin-character.jpg](https://i.loli.net/2021/09/10/oq1AYMeQNjlX8Zf.jpg)
+
+</details>
+
 ## 安装方法
 
 ```bash
@@ -25,15 +41,15 @@ npm install koishi-plugin-genshin
 
 ## 系统需求
 
-需要最新版 koishi v3，并配置数据库。
+需要配合最新版 koishi v3。需要配置数据库，暂时只保证兼容 MongoDB。
 
-另外还需要安装 Chromium 用于生成图片。
+若要使用完整的“卡片”功能，需要配置并安装 [koishi-plugin-puppeteer](https://npmjs.com/package/koishi-plugin-puppeteer)。
 
 ## 配置项目
 
 插件目前需要使用您的网页版米游社的 cookie 来获取玩家信息。
 
-> 使用网页版米游社登录 <https://bbs.mihoyo.com/ys/>，然后在控制台输入 `document.cookie`，返回的结果就是 cookie，一般来说一个 cookie 可以使用一段时间，如果失效了就再次获取一遍。
+> 使用网页版米游社登录 <https://bbs.mihoyo.com/ys/>，然后在控制台输入 `document.cookie`，返回的结果就是 cookie，一般来说只要没有进行修改密码、换绑手机或点击退出按钮等操作，当前 cookie 便能长久使用，如果失效了就重新登录获取一遍。
 
 > **⚠️ 注意 ⚠️**：请妥善保存您的 cookies。<br>绝对不要把你的 cookies 交给任何人！<br>绝对绝对不要把你的 cookies 交给任何人！！<br>绝对绝对绝对不要把你的 cookies 交给任何人！！！
 
@@ -49,7 +65,6 @@ module.exports = {
     // ...
     genshin: {
       // 本插件的配置项
-      }
     }
     // ...
   }
@@ -69,7 +84,7 @@ App.plugin(require('koishi-plugin-genshin'), {
 - `cookie` {string} 您的米游社小饼干
 - `wish` {object}
   - `wish.enable` {boolean} 是否开启抽卡模拟器
-  - `wish.customPools` {[AppGachaPool[]](https://github.com/Dragon-Fish/genshin-gacha-kit)} 自定义卡池（格式详见`genshin-gacha-kit`）
+  - `wish.customPools` {[AppGachaPool[]](https://github.com/genshin-kit/genshin-gacha-kit)} 自定义卡池（格式详见`genshin-gacha-kit`）
 
 ## 注意事项
 
@@ -81,9 +96,9 @@ App.plugin(require('koishi-plugin-genshin'), {
 
 _For communication and learning only._
 
-**All game data & pictures from query:** &copy;miHoYo
+**All game data & pictures from query, Genshin Impact font:** &copy;miHoYo
 
-> Copyright 2021 Koishijs/机智的小鱼君
+> Copyright 2021 koishijs/机智的小鱼君
 >
 > Licensed under the Apache License, Version 2.0 (the "License");<br>
 > you may not use this file except in compliance with the License.<br>
