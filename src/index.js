@@ -10,7 +10,7 @@ const { segment, template, Time } = require('koishi-core')
 
 // GenshinKit
 const { GenshinKit } = require('genshin-kit')
-const { isValidCnUid } = require('genshin-kit').util
+const { isValidUid, isValidCnUid, isValidOsUid } = require('genshin-kit').util
 const genshin = new GenshinKit()
 
 /**
@@ -48,11 +48,13 @@ function apply(ctx, pOptions) {
           ? template('genshin.info_regestered', userFileds.genshin_uid)
           : template('genshin.not_registered')
         return segment('quote', { id: session.messageId }) + reply
-      } else if (!isValidCnUid(uid)) {
-        return (
-          segment('quote', { id: session.messageId }) +
-          template('genshin.invalid_cn_uid')
-        )
+      } else {
+        if (!isValidUid(uid)) {
+          return (
+            segment('quote', { id: session.messageId }) +
+            template('genshin.invalid_uid')
+          )
+        }
       }
     })
     .action(async ({ session }, uid) => {
